@@ -1,6 +1,6 @@
 <template>
   <div class="countdown">
-    <input v-model.number="timeInput" type="number" min="1" max="60" placeholder="Enter time (1-60)" />
+    <input v-model.number="timeInput" type="number" min="1" max="60" placeholder="Let's get started! Enter from (1-60)" />
     <button @click="startCountdown">Start Countdown</button>
     <h2>{{ timeLeft }}</h2>
   </div>
