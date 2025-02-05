@@ -2,22 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue Countdown Timer</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=2.5">
+    <title>Countdown Timer</title>
+    <link rel="stylesheet" href="src/styles.css">
 </head>
 <body>
-    <div id="app">
-        <div class="container">
-            <h1>Countdown Timer</h1>
-            <input type="number" v-model="timeInput" placeholder="Enter time in seconds (1-60)" min="1" max="60">
-            <button @click="startCountdown">Start Countdown</button>
-            <p v-if="timeRemaining >= 0">{{ timeRemaining }}</p>
-        </div>
+    <div class="container">
+        <h1>Countdown Timer</h1>
+        <h2>By Victor Garza</h2>
+        <h3>Enter from 1-60</h3>
+        <input type="number" id="timeInput" placeholder="Enter seconds (1-60)" min="1" max="60">
+        <button onclick="startCountdown()">Start Countdown</button>
+        <p id="timerDisplay"></p>
     </div>
 
-    <script src="script.js"></script>
+    <script src="src/script.js"></script>
 </body>
 </html>
-
