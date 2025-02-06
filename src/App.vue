@@ -1,48 +1,65 @@
-<template>
-  <div class="countdown">
-    <input v-model.number="timeInput" type="number" min="1" max="60" placeholder="Let's get started! Enter from (1-60)" />
-    <button @click="startCountdown">Start Countdown</button>
-    <h2>{{ timeLeft }}</h2>
-  </div>
-
-</template>
-
-<script>
+<script setup>
 import { ref } from 'vue';
 
-export default {
-  setup() {
-    const timeInput = ref(null);
-    const timeLeft = ref(null);
-    let countdown = null;
+const timeInput = ref('');
+const time = ref(0);
+let countdown = null;
 
-    const startCountdown = () => {
-      if (!timeInput.value || timeInput.value < 1 || timeInput.value > 60) {
+const startCountdown = () => {
+    const parsedTime = parseInt(timeInput.value);
+    
+    if (isNaN(parsedTime) || parsedTime < 1 || parsedTime > 60) {
         alert("Please enter a valid number between 1 and 60.");
         return;
-      }
-      
-      timeLeft.value = timeInput.value;
-      clearInterval(countdown);
-      countdown = setInterval(() => {
-        if (timeLeft.value > 0) {
-          timeLeft.value--;
-        } else {
-          clearInterval(countdown);
-          alert("Time's up!");
-        }
-      }, 1000);
-    };
+    }
 
-    return { timeInput, timeLeft, startCountdown };
-  }
+    time.value = parsedTime;
+
+    if (countdown) {
+        clearInterval(countdown);
+    }
+
+    countdown = setInterval(() => {
+        time.value--;
+        if (time.value <= 0) {
+            clearInterval(countdown);
+            alert("Time's up! Have a great day!");
+        }
+    }, 1000);
 };
 </script>
 
-<style>
-.countdown {
-  text-align: center;
-  font-family: Arial, sans-serif;
-  margin-top: 20px;
+<template>
+  <div class="container">
+    <h1>Countdown Timer</h1>
+    <h2>By Victor Garza</h2>
+    <h3>Enter from 1-60</h3>
+    <input type="number" v-model="timeInput" placeholder="Enter seconds (1-60)" min="1" max="60" />
+    <button @click="startCountdown">Start Countdown</button>
+    <p>{{ time }}</p>
+  </div>
+</template>
+
+<style scoped>
+.container {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin-top: 50px;
+}
+input {
+    padding: 8px;
+    margin: 10px;
+}
+button {
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+p {
+    font-size: 24px;
+    font-weight: bold;
 }
 </style>
+
