@@ -21,7 +21,7 @@ export default {
   methods: {
     startCountdown() {
       if (isNaN(this.timeInput) || this.timeInput < 1 || this.timeInput > 60) {
-        alert("Please enter a valid number between 1 and 60.");
+        alert("Please enter a number between 1 and 60.");
         return;
       }
       
